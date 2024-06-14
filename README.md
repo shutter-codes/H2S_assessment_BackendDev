@@ -17,7 +17,8 @@ This is a Node.js and Express-based API for managing tasks and subtasks. It prov
 - JSON Web Tokens (JWT) for authentication
 
 ## Getting Started
-
+### API DOCUMENTATION (POSTMAN) - 
+https://documenter.getpostman.com/view/30376664/2sA3XQg2Hk
 ### Prerequisites
 
 - Node.js installed
