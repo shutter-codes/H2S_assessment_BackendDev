@@ -11,14 +11,23 @@ const app = express();
 
 config();
 
+
+
 // Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+
+
 
 // Routes
 app.use('/api/tasks', taskRoutes);
 app.use('/api/users', authRoutes); 
 app.use('/api/tasks', subtaskRoutes); 
+
+app.use("/", (req, res) => {
+  res.json({ message: "Welcome to the H2S Assessment Backend" });
+});
 
 // Error handling middleware (optional)
 app.use((err, req, res, next) => {
