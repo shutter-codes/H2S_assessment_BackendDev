@@ -3,13 +3,22 @@ const User = require('../models/user');
 
 // to get all tasks
 exports.getTasks = async (req, res) => {
-  const tasks = req.user.tasks
-    .filter(task => !task.isDeleted)
-    .map(task => ({
-      ...task.toObject(),
-      subtasks: task.subtasks.filter(subtask => !subtask.isDeleted)
-    }));
-  res.status(200).json(tasks);
+  try {
+    const tasks = req.user.tasks
+      .filter(task => !task.isDeleted)
+      .map(task => ({
+        ...task.toObject(),
+        subtasks: task.subtasks.filter(subtask => !subtask.isDeleted)
+      }));
+
+    if (tasks.length === 0) {
+      res.status(404).send({ message : 'No tasks found' });
+    } else {
+      res.status(200).json(tasks);
+    }
+  } catch (error) {
+    res.status(500).send({ error: 'Internal server error' });
+  }
 };
 
 
